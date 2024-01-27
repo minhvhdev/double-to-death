@@ -9,7 +9,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': `${path.resolve(__dirname, './src')}`,
-      '@styles': `${path.resolve(__dirname, './src/styles')}`,
+      '@locales': `${path.resolve(__dirname, './src/locales/')}`,
       '@common': `${path.resolve(__dirname, './src/common/')}`,
       '@bj': `${path.resolve(__dirname, './src/games/black-jack')}`,
     },

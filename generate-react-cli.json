@@ -17,13 +17,14 @@
       }
     },
     "page": {
-      "path": "src/pages",
+      "path": "src/common/components/pages",
       "withLazy": false,
       "withStory": false,
-      "withStyle": false,
+      "withStyle": true,
       "withTest": false,
       "customTemplates": {
-        "component": "src/grc-templates/pages/index.tsx"
+        "style": "src/grc-templates/pages/TemplateName.css.ts",
+        "component": "src/grc-templates/pages/TemplateName.tsx"
       }
     }
   }

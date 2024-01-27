@@ -11,4 +11,8 @@ export const DATA_GAMES = [
     name: 'tl',
     url: 'tien-len',
   },
+  {
+    name: 'poker',
+    url: 'poker',
+  },
 ];

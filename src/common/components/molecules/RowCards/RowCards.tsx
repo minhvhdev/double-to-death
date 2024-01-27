@@ -5,15 +5,14 @@ import { DISPLAY_RATIO_CARD } from '@common/constants';
 import { TPlayingCard } from '@common/types';
 import styles from './RowCards.css';
 
-type RowCardsProps = {
+type Props = {
   cards: TPlayingCard[];
   review: boolean;
   showCards?: number[];
-  isRotate?: boolean;
 };
 
-const RowCards = (props: RowCardsProps) => {
-  const { cards, review, showCards, isRotate } = props;
+const RowCards = (props: Props) => {
+  const { cards, review, showCards } = props;
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -28,13 +27,11 @@ const RowCards = (props: RowCardsProps) => {
       <div
         className={styles.rowCards}
         ref={containerRef}
-        style={isRotate ? { transform: 'rotateZ(180deg)' } : {}}
       >
         {cards.map((card, index) => (
           <div
             key={card.name}
             className={styles.card}
-            // style={handleRotateCard(index)}
           >
             <PlayingCard
               name={card.name}

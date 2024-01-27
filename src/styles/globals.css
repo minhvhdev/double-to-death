@@ -8,9 +8,72 @@
   }
   #root,
   #root > div {
-    @apply h-full;
+    @apply bg-o-bg text-o-text h-full transition;
   }
   .ripple-effect {
     @apply pointer-events-none absolute animate-ripple rounded-full bg-white bg-opacity-70 [transform:scale(0)];
+  }
+
+  .backdrop {
+    @apply fixed inset-0 cursor-default bg-gray-900 bg-opacity-20;
+  }
+
+  .active-bg {
+    @apply hover:brightness-125 focus:brightness-125 active:brightness-125;
+  }
+
+  .active-sd {
+    @apply hover:shadow-a focus:shadow-a active:shadow-a;
+  }
+
+  .primary {
+    @apply text-content active-sd active-bg bg-primary;
+  }
+
+  .transparent {
+    @apply text-o-text bg-transparent hover:text-primary;
+  }
+}
+
+@layer base {
+  :root {
+    /* slate-50 */
+    --color-o-bg: #f8fafc;
+    /* slate-800 */
+    --color-o-text: #1e293b;
+    /* slate-100 */
+    --color-m-bg: #f1f5f9;
+    /* slate-900 */
+    --color-m-text: #0f172a;
+    /* slate-200 */
+    --color-a-bg: #f1f5f9;
+    /* slate-950 */
+    --color-a-text: #020617;
+    /* grey-400 */
+    --color-placeholder: #9ca3af;
+    /* sky-800 */
+    --color-border: #0759853a;
+    /* black-50% */
+    --color-shadow: #0f172a80;
+  }
+  :root[class='dark'] {
+    /* slate-900 */
+    --color-o-bg: #0f172a;
+    /* slate-400 */
+    --color-o-text: #94a3b8;
+    /* slate-700 */
+    --color-m-bg: #334155;
+    /* slate-200 */
+    --color-m-text: #e2e8f0;
+    /* slate-500 */
+    --color-a-bg: #64748b;
+    /* slate-50 */
+    --color-a-text: #f8fafc;
+    /* grey-500 */
+    --color-placeholder: #6b7280;
+    /* sky-600 */
+    --color-border: #0285c73a;
+    /* white-50% */
+    --color-shadow: #f8fafc80;
   }
 }

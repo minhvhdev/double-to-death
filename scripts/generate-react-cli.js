@@ -6,9 +6,9 @@
  * yarn gen SinglePlay bj       => home page at pages/games/black-jack
  */
 
-const { exec, execSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
+import { exec, execSync } from 'child_process';
+import fs from 'fs';
+import path from 'path';
 
 const pathComponentMap = {
   com: 'common',
@@ -20,12 +20,14 @@ const levelMap = {
   o: 'organisms',
   p: 'pages',
 };
-const name = process.argv[2];
+const inputName = process.argv[2];
 const pathName = process.argv[3];
 const componentLevel = process.argv[4];
 
-const generatedPath = `src/${pathComponentMap[pathName]}/components/${levelMap[componentLevel]}`;
+const level = levelMap[componentLevel]
+const generatedPath = `src/${pathComponentMap[pathName]}/components/${level}`;
 
+const name = level !== levelMap.p? inputName:`${inputName}Page`;
 const filePathToOpen = `${generatedPath}/${name}/${name}.tsx`;
 
 //Generate Component

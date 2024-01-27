@@ -1,11 +1,15 @@
 import styles from './TemplateName.css';
 
-type TemplateNameProps = {};
+type Props = {
+  edit?: string;
+};
 
-const TemplateName = (props: TemplateNameProps) => {
+const TemplateName = (props: Props) => {
+  const { edit } = props;
+
   return (
     <div className={styles.templateName}>
-      <div>Edit here</div>
+      <div>{edit}</div>
     </div>
   );
 };

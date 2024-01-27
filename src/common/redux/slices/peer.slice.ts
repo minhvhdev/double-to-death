@@ -1,12 +1,6 @@
-import dynamic from 'next/dynamic';
-
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { TypedActionCreator } from '@reduxjs/toolkit/dist/mapBuilders';
-import { HYDRATE } from 'next-redux-wrapper';
 import Peer from 'peerjs';
 
-import { EPlayerStatus } from '@common/enums/player.enum';
-import { genId } from '@common/helpers';
 import { TPeer } from '@common/types/peer.type';
 
 const initialState: TPeer = {
@@ -27,17 +21,9 @@ const peerSlice = createSlice({
       console.log(123);
       state.test = state.test + 1;
     },
-    joinRoom: (state, { payload }: PayloadAction<string>) => {
-      // state.connection = ;
+    joinRoom: (state, { payload }: PayloadAction<null>) => {
+      state.connection = payload;
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase<TypedActionCreator<string>>(
-      HYDRATE as unknown as TypedActionCreator<string>,
-      (state, action: PayloadAction<Partial<TPeer>>) => {
-        return { ...state, ...action.payload };
-      },
-    );
   },
 });
 

@@ -1,7 +1,7 @@
 import CryptoJS from 'crypto-js';
 import { parse, stringify } from 'flatted';
 
-const SECRET_KEY = process.env.NEXT_PUBLIC_CRYPTO_SECRET_KEY as string;
+const SECRET_KEY = import.meta.env.VITE_CRYPTO_SECRET_KEY as string;
 
 export const genId = (): string => {
   const timestamp = Date.now().toString(36);

@@ -1,6 +1,6 @@
 import styles from './TemplateName.css';
 
-const TemplateNamePage = () => {
+const TemplateName = () => {
   return (
     <div className={styles.wrapper}>
       <div>Edit here</div>
@@ -8,4 +8,4 @@ const TemplateNamePage = () => {
   );
 };
 
-export default TemplateNamePage;
+export default TemplateName;

@@ -1,7 +1,8 @@
-import { IconButton } from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
 
 import { LANGUAGE } from '@common/constants';
+
+import { Button } from '..';
 
 const SwitchLang = () => {
   const { i18n } = useTranslation();
@@ -15,12 +16,9 @@ const SwitchLang = () => {
   };
 
   return (
-    <IconButton
-      aria-label="Change language"
-      onClick={changeLanguage}
-      icon={<span>{i18n.language}</span>}
-      fontSize={'1rem'}
-    />
+    <Button aria-label="Change language" onClick={changeLanguage}>
+      {i18n.language}
+    </Button>
   );
 };
 

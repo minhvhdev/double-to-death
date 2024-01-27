@@ -1,6 +1,14 @@
 {
   "common": {
     "bj": "Black Jack",
-    "phom": "Phom"
+    "phom": "Phom",
+    "tl": "Tien Len",
+    "poker": "Poker",
+    "update_button": "Update",
+    "home": {
+      "search_placeholder": "Enter the game name you want to search for!",
+      "add_name_placeholder": "Enter your display name!",
+      "add_name_title": "Update Your Name"
+    }
   }
 }

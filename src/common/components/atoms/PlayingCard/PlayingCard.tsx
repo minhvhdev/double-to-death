@@ -1,12 +1,12 @@
 import { ASSET_PLAYING_CARDS } from '@common/constants';
 import styles from './PlayingCard.css';
 
-type PlayingCardProps = {
+type Props = {
   name: string;
   review?: boolean;
 };
 
-const PlayingCard = (props: PlayingCardProps) => {
+const PlayingCard = (props: Props) => {
   const { name, review = true } = props;
   return (
     <div className={styles.playingCard}>

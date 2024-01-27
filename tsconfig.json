@@ -22,6 +22,7 @@
 
     /* Customs */
     "paths": {
+      "@locales/*": ["./src/locales/*"],
       "@common/*": ["./src/common/*"],
       "@bj/*": ["./src/games/black-jack/*"],
     },

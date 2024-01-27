@@ -1,19 +1,15 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { EPlayerStatus } from '@common/enums/player.enum';
+import { TReduxPlayer } from '@common/types';
 
-type TPlayerInfo = {
-  name: string;
-  status: EPlayerStatus.IDLE;
-};
-
-const initialState: TPlayerInfo = {
+const initialState: TReduxPlayer = {
   name: '',
   status: EPlayerStatus.IDLE,
 };
 
 const playerSlice = createSlice({
-  name: 'game-play',
+  name: 'player',
   initialState,
   reducers: {
     actInitPlayerInfo: (state) => {
@@ -25,5 +21,6 @@ const playerSlice = createSlice({
   },
 });
 
+const playerReducer = playerSlice.reducer;
 export const { actInitPlayerInfo, actAddName } = playerSlice.actions;
-export default playerSlice.reducer;
+export default playerReducer;

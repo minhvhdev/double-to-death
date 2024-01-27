@@ -1,9 +1,12 @@
 'use client';
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import {
+  // PayloadAction,
+  createSlice,
+} from '@reduxjs/toolkit';
 
-import { genId, shuffle } from '@common/helpers';
+// import { genId, shuffle } from '@common/helpers';
 import { EBJGameStatus, EBJPlayingStatus } from '@bj/enums';
-import { bjDealCards } from '@bj/helpers';
+// import { bjDealCards } from '@bj/helpers';
 import { TBJCommonInfo, TBJDealerInfo, TBJYourInfo } from '@bj/types';
 
 type GamePlay = {
@@ -49,17 +52,17 @@ const bjGamePlayReducer = createSlice({
   name: 'game-play',
   initialState,
   reducers: {
-    bjActStartGameAction: (
-      { yourInfo, commonInfo },
-      { payload }: PayloadAction<TPlayingCard[]>,
-    ) => {
-      // bjDealCards(payload);
-      // yourInfo.deckCards = shuffledDeckCards;
-      // yourInfo.handCards = firstRoundPlayingCards;
-      // commonInfo.locations = locations;
-    },
+    // bjActStartGameAction: (
+    //   { yourInfo, commonInfo },
+    //   { payload }: PayloadAction<TPlayingCard[]>,
+    // ) => {
+    //   bjDealCards(payload);
+    //   yourInfo.deckCards = shuffledDeckCards;
+    //   yourInfo.handCards = firstRoundPlayingCards;
+    //   commonInfo.locations = locations;
+    // },
   },
 });
 
-export const { bjActStartGameAction } = bjGamePlayReducer.actions;
+// export const { bjActStartGameAction } = bjGamePlayReducer.actions;
 export default bjGamePlayReducer.reducer;

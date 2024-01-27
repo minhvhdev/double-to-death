@@ -1,6 +1,7 @@
-import { DragEvent, DragEventHandler, MouseEventHandler } from 'react';
+import { DragEvent, DragEventHandler } from 'react';
 
 import { FORMAT_JSON } from '@common/constants';
+import { TClickButton } from '@common/types';
 
 export const getDomData = (
   e: DragEvent<HTMLDivElement>,
@@ -24,7 +25,7 @@ export const defaultDragOver: DragEventHandler<HTMLDivElement> = (e) => {
   e.preventDefault();
 };
 
-export const rippleEffect: MouseEventHandler<HTMLElement> = (event) => {
+export const rippleEffect: TClickButton = (event) => {
   const className = 'ripple-effect';
   const parentElement = event.currentTarget;
   const circle = document.createElement('span');

@@ -18,11 +18,14 @@ const folderMapping = {
   type: 'types',
   constant: 'constants',
   redux: 'redux/slices',
+  helper: 'helpers',
   playingCards: 'playing-cards',
 };
+
+const defaultImportArr = ['type', 'constant', 'helper'];
+
 const exportStringMapping = {
-  type: (fileName) =>
-    `export * from './${fileName}';\n`,
+  default: (fileName) => `export * from './${fileName}';\n`,
   redux: (fileName) =>
     `export { default as ${fileName.replace(
       '.slice',
@@ -48,7 +51,9 @@ fs.readdir(directoryPath, function (err, files) {
   files.forEach(function (file) {
     if (file.endsWith('.ts') && file !== 'index.ts') {
       const fileName = file.replace('.ts', '');
-      exportString += exportStringMapping[folderName](fileName);
+      exportString += defaultImportArr.includes(folderName)
+        ? exportStringMapping.default(fileName)
+        : exportStringMapping[folderName](fileName);
     }
     if (file.endsWith('.svg')) {
       const fileName = file.replace('.svg', '');

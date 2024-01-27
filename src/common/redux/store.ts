@@ -1,72 +1,61 @@
-import {
-  Action,
-  Reducer,
-  ThunkAction,
-  combineReducers,
-  configureStore,
-} from '@reduxjs/toolkit';
-import { createWrapper } from 'next-redux-wrapper';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import {
   TypedUseSelectorHook,
-  useDispatch as useAppDispatch,
-  useSelector as useAppSelector,
+  useDispatch as useOriginalDispatch,
+  useSelector as useOriginalSelector,
 } from 'react-redux';
-import { persistReducer, persistStore } from 'redux-persist';
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+  persistReducer,
+  persistStore,
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-// import thunk from 'redux-thunk';
 
 import { encryptTransform } from '@common/helpers/redux.helper';
 import blackJackReducer from '@bj/redux/blackJackReducer';
-import { peerReducer, playerReducer } from './slices';
+import { peerReducer, playerReducer, configReducer } from './slices';
 
 const persistConfig = {
   key: 'root',
   storage,
-  // transforms: [encryptTransform()],
+  transforms: [encryptTransform()],
 };
 
 //Add Reducers here
 const rootReducer = combineReducers({
+  config: configReducer,
   peer: peerReducer,
   player: playerReducer,
   blackJack: blackJackReducer,
 });
+type RootReducer = ReturnType<typeof rootReducer>;
 
-const persistedReducer = persistReducer(
+const persistedReducer = persistReducer<RootReducer>(
   persistConfig,
-  rootReducer as Reducer<unknown, Action>,
+  rootReducer,
 );
 
-const makeStore = () => {
-  if (typeof window === 'undefined') {
-    const emptyStore = configureStore({
-      reducer: combineReducers({}),
-    });
-    return {
-      ...emptyStore,
-      persistor: persistStore(emptyStore),
-    };
-  }
-  const storeWithOutPersistor = {
-    ...configureStore({
-      reducer: persistedReducer,
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
     }),
-    // __persistor: persistStore(store),
-  };
-  const store = {
-    ...storeWithOutPersistor,
-    persistor: persistStore(storeWithOutPersistor),
-  };
-  return store;
-};
-
-const rootStore = configureStore({
-  reducer: rootReducer,
 });
 
-export type TRootState = ReturnType<typeof rootStore.getState>;
-export type AppStore = ReturnType<typeof makeStore>;
+const persistor = persistStore(store);
 
-const storeWrapper = createWrapper<AppStore>(makeStore);
+type TRootState = ReturnType<typeof store.getState>;
+type AppDispatch = typeof store.dispatch;
+type DispatchFunc = () => AppDispatch;
+const useDispatch: DispatchFunc = useOriginalDispatch;
+const useSelector: TypedUseSelectorHook<TRootState> = useOriginalSelector;
 
-export default storeWrapper;
+export { store, persistor, useDispatch, useSelector };

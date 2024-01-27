@@ -1,90 +1,43 @@
-import { useRef } from 'react';
+import { useState } from 'react';
 
-import {
-  Box,
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Heading,
-  Input,
-  Stack,
-  StackDivider,
-  Text,
-  useColorMode,
-  useDisclosure,
-} from '@chakra-ui/react';
-import {
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-} from '@chakra-ui/react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-import { Logo, SwitchLang, SwitchTheme } from '@common/components/atoms';
+import { Card } from '@common/components/atoms';
+import { Navbar } from '@common/components/organisms';
 import { ASSET_COMMON_IMG } from '@common/constants';
 import { DATA_GAMES } from '@common/data/games.data';
 import styles from './HomePage.css';
 
 const HomePage = () => {
   const { t } = useTranslation();
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = useRef(null);
+  const navigate = useNavigate();
+  const [games, setGames] = useState(DATA_GAMES);
+
+  const handleSearch = (searchText: string) => {
+    setGames(
+      DATA_GAMES.filter(({ name }) =>
+        t(`common.${name}`).toLowerCase().includes(searchText.toLowerCase()),
+      ),
+    );
+  };
+
   return (
     <div className={styles.wrapper}>
-      <SwitchTheme />
-      <SwitchLang />
-      <Button>Test</Button>
-      <Logo />
+      <Navbar onSearch={handleSearch} />
       <div className={styles.games}>
-        {DATA_GAMES.map(({ name, url }) => (
-          <Link to={`/games/${url}`} key={name}>
-            <Card>
-              <CardHeader>
-                <Heading size="md" textAlign="center" color="primary">
-                  {t(`common.${name}`)}
-                </Heading>
-              </CardHeader>
+        {games.map(({ name, url }) => (
+          <Card
+            onClick={() => navigate(`/games/${url}`)}
+            key={name}
+            className={styles.game}
+          >
+            <div>{t(`common.${name}`)}</div>
 
-              <CardBody>
-                <img src={`${ASSET_COMMON_IMG}/${name}.png`} alt={name} />
-              </CardBody>
-            </Card>
-          </Link>
+            <img src={`${ASSET_COMMON_IMG}/bj.png`} alt={name} height="100%" />
+          </Card>
         ))}
       </div>
-
-      <Button ref={btnRef} onClick={onOpen}>
-        Open
-      </Button>
-      <Drawer
-        isOpen={isOpen}
-        placement="right"
-        onClose={onClose}
-        finalFocusRef={btnRef}
-      >
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>Create your account</DrawerHeader>
-
-          <DrawerBody>
-            <Input placeholder="Type here..." />
-          </DrawerBody>
-
-          <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button colorScheme="blue">Save</Button>
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
     </div>
   );
 };

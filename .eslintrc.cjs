@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2022: true },
+  env: { browser: true, es2022: true, node: true },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -10,6 +10,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', '@typescript-eslint', 'import'],
   rules: {
+    'no-unused-vars': ['warn'],
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
@@ -36,6 +37,11 @@ module.exports = {
           },
           {
             pattern: '@bj/**',
+            group: 'internal',
+            position: 'before',
+          },
+          {
+            pattern: '@locales/**',
             group: 'internal',
             position: 'before',
           },
@@ -77,6 +83,7 @@ module.exports = {
       files: ['src/grc-templates/**'],
       rules: {
         '@typescript-eslint/ban-types': ['off'],
+        '@typescript-eslint/no-unused-vars': ['off'],
       },
     },
     // {
