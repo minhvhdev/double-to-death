@@ -23,7 +23,14 @@ const SwitchTheme = React.memo(() => {
   }, [theme]);
 
   return (
-    <Button title="switch-theme" onClick={handleSwitchTheme}>
+    <Button
+      title="switch-theme"
+      icon
+      width={36}
+      height={36}
+      fontSize={20}
+      onClick={handleSwitchTheme}
+    >
       {theme === ETheme.LIGHT ? <Sun /> : <Moon />}
     </Button>
   );

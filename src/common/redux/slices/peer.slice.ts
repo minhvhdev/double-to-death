@@ -18,7 +18,6 @@ const peerSlice = createSlice({
       //   state.peer = new Peer();
       // });
       state.peer = new Peer();
-      console.log(123);
       state.test = state.test + 1;
     },
     joinRoom: (state, { payload }: PayloadAction<null>) => {

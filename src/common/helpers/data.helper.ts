@@ -1,6 +1,8 @@
 import CryptoJS from 'crypto-js';
 import { parse, stringify } from 'flatted';
 
+import { TIME_OUT } from '@common/constants';
+
 const SECRET_KEY = import.meta.env.VITE_CRYPTO_SECRET_KEY as string;
 
 export const genId = (): string => {
@@ -43,4 +45,20 @@ export const combineWithoutOrder = <T>(arr: T[], numWays: number): T[][] => {
   };
   helper([], 0);
   return combinations;
+};
+
+export const debounce = <F extends (...args: Parameters<F>) => ReturnType<F>>(
+  func: F,
+  waitFor = TIME_OUT.DEBOUNCING,
+) => {
+  let timeout: NodeJS.Timeout;
+
+  return (...args: Parameters<F>): Promise<ReturnType<F>> =>
+    new Promise((resolve) => {
+      if (timeout) {
+        clearTimeout(timeout);
+      }
+
+      timeout = setTimeout(() => resolve(func(...args)), waitFor);
+    });
 };

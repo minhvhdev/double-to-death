@@ -36,7 +36,7 @@ module.exports = {
       },
       boxShadow: {
         a: '1px 2px 3px -1px var(--color-shadow)',
-        m: '2px 4px 6px -1px var(--color-shadow)',
+        m: '2px 4px 6px -2px var(--color-shadow)',
       },
       translate: {
         center: '-50%',

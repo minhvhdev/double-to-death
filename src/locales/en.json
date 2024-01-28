@@ -4,7 +4,8 @@
     "phom": "Phom",
     "tl": "Tien Len",
     "poker": "Poker",
-    "update_button": "Update",
+    "confirm_button": "Confirm",
+    "cancel_button": "Cancel",
     "home": {
       "search_placeholder": "Enter the game name you want to search for!",
       "add_name_placeholder": "Enter your display name!",

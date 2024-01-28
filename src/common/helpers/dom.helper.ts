@@ -1,6 +1,6 @@
 import { DragEvent, DragEventHandler } from 'react';
 
-import { FORMAT_JSON } from '@common/constants';
+import { BASE_REM_SIZE, FORMAT_JSON } from '@common/constants';
 import { TClickButton } from '@common/types';
 
 export const getDomData = (
@@ -49,4 +49,9 @@ export const rippleEffect: TClickButton = (event) => {
   }
 
   parentElement.appendChild(circle);
+};
+
+export const pxToRem = (px: number | undefined, defaultValue = ''): string => {
+  if (!px) return defaultValue;
+  return `${px / BASE_REM_SIZE}rem`;
 };

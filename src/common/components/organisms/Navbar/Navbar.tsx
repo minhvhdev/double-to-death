@@ -1,8 +1,9 @@
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 import { Logo, SwitchLang, SwitchTheme, Input } from '@common/components/atoms';
 import { ChangeName } from '@common/components/molecules';
-import { TBlurInput } from '@common/types';
+import { debounce } from '@common/helpers';
+import { TEventInput } from '@common/types';
 import styles from './Navbar.css';
 
 type Props = {
@@ -11,12 +12,11 @@ type Props = {
 
 const Navbar = (props: Props) => {
   const { onSearch } = props;
-  const { t } = useTranslation();
 
-  const handleSearch: TBlurInput = (e) => {
+  const handleSearch = debounce<TEventInput>((e) => {
     const searchText = e.target.value;
     onSearch(searchText);
-  };
+  });
 
   return (
     <div className={styles.navbar}>
@@ -24,9 +24,9 @@ const Navbar = (props: Props) => {
         <Logo />
       </div>
       <Input
-        onBlur={handleSearch}
+        onChange={handleSearch}
         placeholder={t('common.home.search_placeholder')}
-        width={22}
+        width={360}
       />
       <div className={styles.switch}>
         <SwitchLang />

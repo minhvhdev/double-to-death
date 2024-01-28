@@ -8,7 +8,7 @@
   }
   #root,
   #root > div {
-    @apply bg-o-bg text-o-text h-full transition;
+    @apply h-full bg-o-bg text-o-text transition;
   }
   .ripple-effect {
     @apply pointer-events-none absolute animate-ripple rounded-full bg-white bg-opacity-70 [transform:scale(0)];
@@ -27,12 +27,16 @@
   }
 
   .primary {
-    @apply text-content active-sd active-bg bg-primary;
+    @apply active-sd active-bg bg-primary text-content;
   }
 
   .transparent {
-    @apply text-o-text bg-transparent hover:text-primary;
+    @apply bg-transparent text-o-text hover:text-primary;
   }
+
+  /* .outline {
+    @apply bg-transparent text-o-text hover:text-primary;
+  } */
 }
 
 @layer base {
@@ -54,7 +58,7 @@
     /* sky-800 */
     --color-border: #0759853a;
     /* black-50% */
-    --color-shadow: #0f172a80;
+    --color-shadow: #0f172a30;
   }
   :root[class='dark'] {
     /* slate-900 */
@@ -74,6 +78,6 @@
     /* sky-600 */
     --color-border: #0285c73a;
     /* white-50% */
-    --color-shadow: #f8fafc80;
+    --color-shadow: #f8fafc30;
   }
 }

@@ -1,5 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 
+import { pxToRem } from '@common/helpers';
 import { TReactHTMLInput } from '@common/types';
 import styles from './Input.css';
 
@@ -10,10 +11,12 @@ type Props = TReactHTMLInput & {
 
 const Input = (props: Props) => {
   const { className, width, height, ...args } = props;
+
   const style = {
-    height: height ? height + 'rem' : 'fit-content',
-    width: width ? width + 'rem' : '100%',
+    height: pxToRem(height, 'fit-content'),
+    width: pxToRem(width, '100%'), 
   };
+  
   return (
     <input
       className={twMerge(styles.input, className)}

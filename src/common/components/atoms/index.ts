@@ -1,8 +1,11 @@
-export { default as PlayingCard } from './PlayingCard/PlayingCard';
-export { default as SwitchTheme } from './SwitchTheme/SwitchTheme';
-export { default as SwitchLang } from './SwitchLang/SwitchLang';
-export { default as Logo } from './Logo/Logo';
-export { default as Card } from './Card/Card';
-export { default as Modal } from './Modal/Modal';
-export { default as Input } from './Input/Input';
-export { default as Button } from './Button/Button';
+import React from 'react';
+
+const PlayingCard = React.lazy(() => import('./PlayingCard/PlayingCard'));
+const SwitchTheme = React.lazy(() => import('./SwitchTheme/SwitchTheme'));
+const SwitchLang = React.lazy(() => import('./SwitchLang/SwitchLang'));
+const Logo = React.lazy(() => import('./Logo/Logo'));
+const Card = React.lazy(() => import('./Card/Card'));
+const Input = React.lazy(() => import('./Input/Input'));
+const Button = React.lazy(() => import('./Button/Button'));
+
+export { PlayingCard, SwitchTheme, SwitchLang, Logo, Card, Input, Button };

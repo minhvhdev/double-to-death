@@ -1,5 +1,6 @@
 import {
   ButtonHTMLAttributes,
+  ChangeEventHandler,
   DOMAttributes,
   Dispatch,
   FocusEventHandler,
@@ -28,6 +29,7 @@ export type TSize = 'sm' | 'md' | 'lg' | 'xl';
 
 export type TSetState<T> = Dispatch<SetStateAction<T>>;
 
-export type TBlurInput = FocusEventHandler<HTMLInputElement>;
+export type TEventInput = FocusEventHandler<HTMLInputElement> &
+  ChangeEventHandler<HTMLInputElement>;
 
 export type TClickButton = MouseEventHandler<HTMLButtonElement>;

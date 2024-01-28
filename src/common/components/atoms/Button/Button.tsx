@@ -2,7 +2,7 @@ import React from 'react';
 
 import { twMerge } from 'tailwind-merge';
 
-import { rippleEffect } from '@common/helpers';
+import { pxToRem, rippleEffect } from '@common/helpers';
 import { TClickButton, TReactChild, TReactHTMLButton } from '@common/types';
 import styles from './Button.css';
 
@@ -11,7 +11,8 @@ type Props = TReactHTMLButton & {
   width?: number;
   height?: number;
   fontSize?: number;
-  color?: 'primary' | 'transparent' | 'danger' | 'warning' | 'info';
+  color?: 'primary' | 'transparent' | 'danger' | 'warning' | 'info' | 'outline';
+  icon?: boolean;
 };
 
 const Button = React.memo((props: Props) => {
@@ -23,25 +24,26 @@ const Button = React.memo((props: Props) => {
     fontSize,
     color,
     onClick,
+    icon,
     ...args
   } = props;
+
   const handleClick: TClickButton = (e) => {
     rippleEffect(e);
-    onClick && onClick(e);
+    onClick?.(e);
   };
 
   const style = {
-    width: width ? width + 'rem' : '',
-    height: height ? height + 'rem' : '',
-    fontSize: fontSize ? fontSize + 'rem' : '',
+    width: pxToRem(width),
+    height: pxToRem(height),
+    fontSize: pxToRem(fontSize),
+    padding: icon ? '0' : '',
   };
-
-  const colorClass = color ? color : 'primary';
 
   return (
     <button
       type="button"
-      className={twMerge(`${styles.button} ${colorClass} ${className}`)}
+      className={twMerge(`${styles.button} ${color ?? 'primary'} ${className}`)}
       onClick={handleClick}
       style={style}
       {...args}
