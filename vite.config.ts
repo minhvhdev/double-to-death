@@ -14,4 +14,13 @@ export default defineConfig({
       '@bj': `${path.resolve(__dirname, './src/games/black-jack')}`,
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-router-dom': ['react-router-dom'],
+        },
+      },
+    },
+  },
 });

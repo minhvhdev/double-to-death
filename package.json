@@ -18,14 +18,10 @@
     "sort": "node scripts/sort-tailwind.cjs"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.3",
-    "@emotion/styled": "^11.11.0",
-    "@headlessui/react": "^1.7.18",
     "@phosphor-icons/react": "^2.0.15",
     "@reduxjs/toolkit": "^2.0.1",
     "crypto-js": "^4.2.0",
     "flatted": "^3.2.9",
-    "framer-motion": "^10.18.0",
     "peerjs": "^1.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

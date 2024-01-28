@@ -1,5 +1,1 @@
-import React from 'react';
-
-const Navbar = React.lazy(() => import('./Navbar/Navbar'));
-
-export { Navbar };
+export { default as Navbar } from './Navbar/Navbar';

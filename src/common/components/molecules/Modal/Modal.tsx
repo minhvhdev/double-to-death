@@ -4,7 +4,7 @@ import { X } from '@phosphor-icons/react';
 import { t } from 'i18next';
 
 import { TIME_OUT } from '@common/constants';
-import { SPECIAL_KEY } from '@common/constants/keyboard.constant';
+import { KEY_ENTER, KEY_ESC } from '@common/constants/keyboard.constant';
 import { withConditionRender } from '@common/HOCs';
 import { useKeyboard } from '@common/hooks';
 import { TReactChild } from '@common/types';
@@ -51,11 +51,10 @@ const ModalMemo = React.memo((props: Props) => {
     }
   }, [open]);
 
-  useKeyboard(SPECIAL_KEY.ESCAPE, () => {
-    console.log(123);
+  useKeyboard(KEY_ESC, () => {
     closeModalWithEffectTimeout();
   });
-  useKeyboard(SPECIAL_KEY.ENTER, handleSubmit, true);
+  useKeyboard(KEY_ENTER, handleSubmit, true);
 
   return (
     <div className={`${styles.modal} ${openClass}`}>
