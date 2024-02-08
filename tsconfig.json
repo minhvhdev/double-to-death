@@ -25,6 +25,7 @@
       "@locales/*": ["./src/locales/*"],
       "@common/*": ["./src/common/*"],
       "@bj/*": ["./src/games/black-jack/*"],
+      "@routers/*": ["./src/routers/*"],
     },
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],

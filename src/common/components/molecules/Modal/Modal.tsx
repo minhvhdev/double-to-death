@@ -69,6 +69,7 @@ const ModalMemo = React.memo((props: Props) => {
         <div className={styles.title}>{title}</div>
         {onClose && (
           <Button
+            icon
             className={styles.closeButton}
             title="close"
             color="transparent"
@@ -80,9 +81,7 @@ const ModalMemo = React.memo((props: Props) => {
         <div>{children}</div>
         <div className={styles.footer}>
           {onSubmit && (
-            <Button onClick={handleSubmit} id="modal-confirm">
-              {t('common.confirm_button')}
-            </Button>
+            <Button onClick={handleSubmit}>{t('common.confirm_button')}</Button>
           )}
           {onCancel && (
             <Button onClick={handleCancel}>{t('common.cancel_button')}</Button>

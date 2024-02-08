@@ -1,11 +1,18 @@
-import { RouteObject } from "react-router-dom";
+import { RouteObject } from 'react-router-dom';
 
-import { BjLobbyPage } from "@bj/components/pages";
+import { genGameRouterExport } from '@common/helpers';
+import { BjLobbyPage } from '@bj/components/pages';
 
 const blackJackRoutes: RouteObject = {
   path: 'black-jack',
   Component: BjLobbyPage,
-  children: [],
+  children: [
+    { path: 'single', Component: BjLobbyPage },
+    { path: 'create', Component: BjLobbyPage },
+    { path: 'room', Component: BjLobbyPage },
+  ],
 };
 
-export default blackJackRoutes
+export const BJ_ROUTERS = genGameRouterExport(blackJackRoutes);
+
+export default blackJackRoutes;

@@ -86,12 +86,5 @@ module.exports = {
         '@typescript-eslint/no-unused-vars': ['off'],
       },
     },
-    // {
-    //   files: ['./**'],
-    //   rules: {
-    //     'import/no-anonymous-default-export': ['off'],
-    //     'import/order': ['off'],
-    //   },
-    // },
   ],
 };

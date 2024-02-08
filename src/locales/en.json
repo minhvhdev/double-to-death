@@ -6,6 +6,9 @@
     "poker": "Poker",
     "confirm_button": "Confirm",
     "cancel_button": "Cancel",
+    "single_player": "Single Player",
+    "create_room": "Create Room",
+    "join_room": "Join Room",
     "home": {
       "search_placeholder": "Enter the game name you want to search for!",
       "add_name_placeholder": "Enter your display name!",

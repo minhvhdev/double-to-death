@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
 
 import { pxToRem, rippleEffect } from '@common/helpers';
@@ -8,23 +9,25 @@ import styles from './Button.css';
 
 type Props = TReactHTMLButton & {
   children: TReactChild;
-  width?: number;
-  height?: number;
-  fontSize?: number;
+  w?: number | string;
+  h?: number | string;
+  fs?: number | string;
   color?: 'primary' | 'transparent' | 'danger' | 'warning' | 'info' | 'outline';
   icon?: boolean;
+  to?: string;
 };
 
 const Button = React.memo((props: Props) => {
   const {
     children,
     className = '',
-    width,
-    height,
-    fontSize,
+    w,
+    h,
+    fs,
     color,
     onClick,
     icon,
+    to,
     ...args
   } = props;
 
@@ -34,9 +37,9 @@ const Button = React.memo((props: Props) => {
   };
 
   const style = {
-    width: pxToRem(width),
-    height: pxToRem(height),
-    fontSize: pxToRem(fontSize),
+    width: pxToRem(w),
+    height: pxToRem(h),
+    fontSize: pxToRem(fs),
     padding: icon ? '0' : '',
   };
 
@@ -48,7 +51,13 @@ const Button = React.memo((props: Props) => {
       style={style}
       {...args}
     >
-      {children}
+      {to ? (
+        <Link to={to} className={styles.link}>
+          {children}
+        </Link>
+      ) : (
+        children
+      )}
     </button>
   );
 });

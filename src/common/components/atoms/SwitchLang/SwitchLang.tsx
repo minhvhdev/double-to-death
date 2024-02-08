@@ -13,7 +13,7 @@ const SwitchLang = () => {
   };
 
   return (
-    <Button width={36} height={36} onClick={changeLanguage}>
+    <Button w={36} h={36} onClick={changeLanguage}>
       {i18n.language}
     </Button>
   );

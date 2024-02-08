@@ -14,21 +14,13 @@ const SwitchTheme = React.memo(() => {
 
   const handleSwitchTheme = () => dispatch(actSwitchTheme());
 
-  useEffect(() => {
-    if (theme === ETheme.DARK) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [theme]);
-
   return (
     <Button
       title="switch-theme"
       icon
-      width={36}
-      height={36}
-      fontSize={20}
+      w={36}
+      h={36}
+      fs={20}
       onClick={handleSwitchTheme}
     >
       {theme === ETheme.LIGHT ? <Sun /> : <Moon />}

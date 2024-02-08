@@ -5,18 +5,18 @@ import { TReactHTMLInput } from '@common/types';
 import styles from './Input.css';
 
 type Props = TReactHTMLInput & {
-  width?: number;
-  height?: number;
+  w?: number;
+  h?: number;
 };
 
 const Input = (props: Props) => {
-  const { className, width, height, ...args } = props;
+  const { className, w, h, ...args } = props;
 
   const style = {
-    height: pxToRem(height, 'fit-content'),
-    width: pxToRem(width, '100%'), 
+    height: pxToRem(h, 'fit-content'),
+    width: pxToRem(w, '100%'),
   };
-  
+
   return (
     <input
       className={twMerge(styles.input, className)}

@@ -26,7 +26,7 @@ const Navbar = (props: Props) => {
       <Input
         onChange={handleSearch}
         placeholder={t('common.home.search_placeholder')}
-        width={360}
+        w={360}
       />
       <div className={styles.switch}>
         <SwitchLang />

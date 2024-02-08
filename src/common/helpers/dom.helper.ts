@@ -51,7 +51,18 @@ export const rippleEffect: TClickButton = (event) => {
   parentElement.appendChild(circle);
 };
 
-export const pxToRem = (px: number | undefined, defaultValue = ''): string => {
+export const pxToRem = (
+  px: number | string | undefined,
+  defaultValue = '',
+): string => {
   if (!px) return defaultValue;
+  if (typeof px === 'string') return px;
   return `${px / BASE_REM_SIZE}rem`;
+};
+
+export const fn = <T extends unknown[], U>(
+  fn: (...args: T) => U,
+  ...args: T
+): (() => U) => {
+  return (): U => fn(...args);
 };
